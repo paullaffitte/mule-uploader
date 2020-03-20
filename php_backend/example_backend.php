@@ -1,6 +1,6 @@
 <?php
 
-function getenv_default($env_var, $default) {
+function getenv_default($env_var, $default = null) {
     $res = getenv($env_var);
     if(!$res) {
         $res = $default;
@@ -96,6 +96,7 @@ class Backend {
         $this->AWS_SECRET = getenv_default('AWS_SECRET', 'the_secret_access_key');
         $this->AWS_ACCESS_KEY = getenv_default('AWS_ACCESS_KEY', 'the_public_access_key');
         $this->REGION = getenv_default('AWS_REGION', 'region');
+        $this->S3_HOST = getenv_default('S3_HOST');
         $this->ENGINE = getenv_default('DATABASE_URL', 'sqlite:database.db');
     }
 
@@ -168,6 +169,7 @@ class Backend {
                 "date" => $date->format('c'),
                 "signature" => $signature,
                 "access_key" => $this->AWS_ACCESS_KEY,
+                "host" => $this->S3_HOST,
                 "region" => $this->REGION,
                 "bucket" => $this->BUCKET,
                 "backup_key" => strval(rand(0, 10000000000)),

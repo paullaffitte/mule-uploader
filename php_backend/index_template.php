@@ -60,8 +60,9 @@
                     file_input: document.getElementById("file"),
                     access_key: "<?php echo $backend->AWS_ACCESS_KEY ?>",
                     content_type: "<?php echo $backend->MIME_TYPE ?>",
-                    bucket: "<?php echo $backend->BUCKET ?>",
+                    host: "<?php echo $backend->HOST ?>",
                     region: "<?php echo $backend->REGION ?>",
+                    bucket: "<?php echo $backend->BUCKET ?>",
                     key: "<?php echo $key ?>",
                     ajax_base: "backend",
 

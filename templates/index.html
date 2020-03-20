@@ -5,7 +5,8 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <script type="text/javascript" id="mule" src="mule-uploader.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.6/crypto-js.min.js" integrity="sha256-+C+3eHcpwUNtPUleOMFgR6djozQta0ZbntvMGBLtkoE=" crossorigin="anonymous"></script>
+        <script type="text/javascript" id="mule" src="../dist/mule-uploader.js"></script>
         <style>
             body {
                 background:
@@ -62,6 +63,7 @@
                     content_type: "{{ mime_type }}",
                     bucket: "{{ bucket }}",
                     region: "{{ region }}",
+                    host: "{{ host }}",
                     key: "{{ key }}",
                     {% if ajax_base %}
                         ajax_base: "{{ ajax_base }}",

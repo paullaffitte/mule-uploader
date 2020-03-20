@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from werkzeug import SharedDataMiddleware
 from hashlib import sha1
 from settings import DEBUG, AWS_ACCESS_KEY, AWS_SECRET, MIME_TYPE, BUCKET
-from settings import ENGINE, PORT, CHUNK_SIZE, AWS_REGION
+from settings import ENGINE, PORT, CHUNK_SIZE, AWS_REGION, S3_HOST
 from urllib import quote
 from datetime import datetime
 
@@ -95,6 +95,7 @@ def signing_key():
         "date": date.isoformat() + 'Z',
         "signature": key,
         "access_key": AWS_ACCESS_KEY,
+        "host": S3_HOST,
         "region": AWS_REGION,
         "bucket": BUCKET,
         "backup_key": str(random.randint(1, 1000000)),
@@ -171,7 +172,8 @@ def index():
     return render_template('index.html', aws_access_key=AWS_ACCESS_KEY,
                            mime_type=MIME_TYPE, bucket=BUCKET,
                            region=AWS_REGION,
-                           key=str(random.randint(1, 1000000)))
+                           host=S3_HOST,
+                           key='tests/' + str(random.randint(1, 1000000)))
 
 
 if app.debug:

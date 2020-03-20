@@ -13,7 +13,7 @@ Mule-upload
 
 #### What people think of it:
 
-> We use Mule Uploader to archive audio in our Rails/AngularJS application www.popuparchive.org. I tried many projects that integrate with S3 in various ways before using this. By using the multipart upload API, multiple threads, and resumable uploads, it met our essential needs for handling large media files, and without requiring a specific UI or DOM elements.  It also came with no dependencies on jQuery or other libraries, making it easy to add to our AngularJS front-end. 
+> We use Mule Uploader to archive audio in our Rails/AngularJS application www.popuparchive.org. I tried many projects that integrate with S3 in various ways before using this. By using the multipart upload API, multiple threads, and resumable uploads, it met our essential needs for handling large media files, and without requiring a specific UI or DOM elements.  It also came with no dependencies on jQuery or other libraries, making it easy to add to our AngularJS front-end.
 >
 > -- Andrew Kuklewicz, Tech Director prx.org, Lead Developer www.popuparchive.org.
 
@@ -82,7 +82,7 @@ In order to use this library, you need the following:
      }
      ```
 
-5. You need a backend to sign your REST requests (a Flask + SQLAlchemy one is available at example_backend.py). 
+5. You need a backend to sign your REST requests (a Flask + SQLAlchemy one is available at example_backend.py).
 Here are code samples for creating the signing key: http://docs.aws.amazon.com/general/latest/gr/signature-v4-examples.html
 
 6. For detailed instructions about how each of the ajax actions should respond, read the source code; there are two actions:
@@ -102,15 +102,16 @@ If you'd want example backends in other languages/with other frameworks, let me 
    2. `export AWS_SECRET=[your access_key's secret]`
    3. `export AWS_REGION=[your bucket's region]`
    4. `export BUCKET=[your AWS bucket]`
-   5. (optionally) `export MIME_TYPE=[your desired mime-type]`. Defaults to `application/octet-stream`
-   6. (optionally) `export DATABASE_URL=[your db url]`. Notice that the db url looks like `postgres://user:password@location:port/db_name` or `sqlite:///file`. Defaults to `sqlite:///database.db`
-   7. (optionally) `export PORT=[your desired port]`. Defaults to `5000`
-   8. (optionally) `export CHUNK_SIZE=[chunk size in bytes]`. Defaults to 6MB i.e. `6291456`
+   5. (optionally) `export S3_HOST=[your S3 compliant host]`. Defaults to `s3.[AWS_REGION].amazonaws.com` (defaulted client side in mule-uploader.js)
+   6. (optionally) `export MIME_TYPE=[your desired mime-type]`. Defaults to `application/octet-stream`
+   7. (optionally) `export DATABASE_URL=[your db url]`. Notice that the db url looks like `postgres://user:password@location:port/db_name` or `sqlite:///file`. Defaults to `sqlite:///database.db`
+   8. (optionally) `export PORT=[your desired port]`. Defaults to `5000`
+   9. (optionally) `export CHUNK_SIZE=[chunk size in bytes]`. Defaults to 6MB i.e. `6291456`
 
    You can see and modify these options in `settings.py`.
 
 4. Run `python example_backend.py`
-5. Navigate to `http://localhost:[PORT]/`, where `[PORT]` is the value given at 3.7.
+5. Navigate to `http://localhost:[PORT]/`, where `[PORT]` is the value given at 3.8.
 
 #### The fine print
 
