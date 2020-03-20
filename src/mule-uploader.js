@@ -6,9 +6,8 @@
  * License: https://opensource.org/licenses/MIT
  */
 
-
 (function(namespace){
-    
+
     // AJAX helper. It takes an object that contains load_callback, error_callback,
     // url, method, headers, state_change_callback, progress_callback
     var XHR = function(args) {
@@ -735,9 +734,7 @@
                 };
             }
 
-            console.log(u.settings);
-            var host = "s3" + utils.region_string(u.settings.region) + ".amazonaws.com";
-            var url = location.protocol + "//" + host + "/" + u.settings.bucket + "/" + path;
+            var url = location.protocol + "//" + utils.get_host(u.settings.auth, 'check_already_uploaded') + "/" + u.settings.bucket + "/" + path;
             XHR({
                 url: url,
                 method: method,
@@ -1089,7 +1086,7 @@
             self.request_date = new Date();
 
             self.headers = self.settings.headers;
-            self.headers['host'] = self.settings.auth.bucket + ".s3" + utils.region_string(self.settings.auth.region) + ".amazonaws.com";
+            self.headers['host'] = self.settings.auth.bucket + '.' + utils.get_host(self.settings.auth, 'send');
 
             var date_string = [
                 self.settings.auth.date.getUTCFullYear(),
@@ -1287,6 +1284,16 @@
                 result[key] = extension[key];
             }
             return result;
+        },
+        get_host: function(auth_settings, debug) {
+            console.log(debug);
+
+            if (auth_settings.host && auth_settings.host.length > 0) {
+                console.warn('ignoring region since "host" setting has been provided');
+                return auth_settings.host;
+            }
+
+            return "s3" + utils.region_string(auth_settings.region) + ".amazonaws.com";
         }
 
     };
